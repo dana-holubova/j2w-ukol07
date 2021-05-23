@@ -5,44 +5,64 @@
     <title>Vizitkovník</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet"
+          href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="icon" type="image/png" href="/images/favicon.png">
 </head>
 <body>
 <div class="detail">
-    <form class="vizitka">
+    <form class="vizitka" method="post" novalidate>
         <div class="row">
-            <label for="jmeno">Jméno</label>
-            <input type="text" id="jmeno" name="jmeno" maxlength="100" required />
+            <label for="celeJmeno">Jméno</label>
+            <input type="text" th:field="${formular.celeJmeno}" maxlength="100" required/>
+            <div class="error" th:if="${#fields.hasErrors('formular.celeJmeno')}"
+                 th:errors="${formular.celeJmeno}"></div>
         </div>
         <div class="row">
             <label for="firma">Firma</label>
-            <input type="text" id="firma" name="firma" maxlength="100" required />
+            <!--            <input type="text" id="firma" name="firma" maxlength="100" required />-->
+            <input type="text" th:field="${formular.firma}" maxlength="100" required/>
+            <div class="error" th:if="${#fields.hasErrors('formular.firma')}" th:errors="${formular.firma}"></div>
         </div>
         <div class="row">
             <label for="ulice">Ulice a čísla</label>
-            <input type="text" id="ulice" name="ulice" maxlength="100" required />
+            <!--            <input type="text" id="ulice" name="ulice" maxlength="100" required />-->
+            <input type="text" th:field="${formular.ulice}" maxlength="100" required/>
+            <div class="error" th:if="${#fields.hasErrors('formular.ulice')}" th:errors="${formular.ulice}"></div>
         </div>
         <div class="row">
             <label for="obec">Obec</label>
-            <input type="text" id="obec" name="obec" maxlength="100" required />
+            <!--            <input type="text" id="obec" name="obec" maxlength="100" required />-->
+            <input type="text" th:field="${formular.obec}" maxlength="100" required/>
+            <div class="error" th:if="${#fields.hasErrors('formular.obec')}" th:errors="${formular.obec}"></div>
         </div>
         <div class="row">
             <label for="psc">PSČ</label>
-            <input type="text" id="psc" name="psc" minlength="5" maxlength="5" pattern="[0-9]{5}" required />
+            <!--            <input type="text" id="psc" name="psc" minlength="5" maxlength="5" pattern="[0-9]{5}" required />-->
+            <input type="text" th:field="${formular.psc}" minlength="5" maxlength="5" pattern="[0-9]{5}" required/>
+            <div class="error" th:if="${#fields.hasErrors('formular.psc')}" th:errors="${formular.psc}"></div>
         </div>
         <div class="row">
             <label for="email">E-mail <small>(volitelný)</small></label>
-            <input type="email" id="email" name="email" maxlength="100" />
+            <!--            <input type="email" id="email" name="email" maxlength="100" />-->
+            <input type="email" th:field="${formular.email}" maxlength="100"/>
+            <div class="error" th:if="${#fields.hasErrors('formular.email')}" th:errors="${formular.email}">Chybný
+                formát e-mailu.
+            </div>
         </div>
         <div class="row">
             <label for="telefon">Telefon <small>(volitelný)</small></label>
-            <input type="tel" id="telefon" name="telefon"  maxlength="100"  />
+            <!--            <input type="tel" id="telefon" name="telefon"  maxlength="100"  />-->
+            <input type="tel" th:field="${formular.telefon}" maxlength="100"/>
+            <div class="error" th:if="${#fields.hasErrors('formular.telefon')}" th:errors="${formular.telefon}"></div>
         </div>
         <div class="row">
             <label for="web">Web <small>(volitelný)</small></label>
-            <input type="url" id="web" name="web" maxlength="100"  />
+            <!--            <input type="url" id="web" name="web" maxlength="100"  />-->
+            <input type="url" th:field="${formular.web}" maxlength="100"/>
+            <!--            TODO: Vracet chybovou hlášku v lepším formátu -->
+            <div class="error" th:if="${#fields.hasErrors('formular.web')}" th:errors="${formular.web}"></div>
         </div>
         <div class="form-controls">
             <button type="submit">Odeslat</button>

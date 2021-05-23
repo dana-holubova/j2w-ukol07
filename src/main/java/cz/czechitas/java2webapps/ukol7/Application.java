@@ -10,13 +10,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class Application {
-  /**
-   * Hlavní metoda spouštějící celou aplikaci.
-   *
-   * @param args Argumenty z příkazové řádky při spuštění aplikace.
-   */
-  public static void main(String[] args) {
-    SpringApplication.run(Application.class, args);
-  }
+    /**
+     * Hlavní metoda spouštějící celou aplikaci.
+     *
+     * @param args Argumenty z příkazové řádky při spuštění aplikace.
+     */
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
 
 }

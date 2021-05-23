@@ -5,25 +5,30 @@
     <title>Vizitkovník</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet"
+          href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="icon" type="image/png" href="/images/favicon.png">
 </head>
 <body>
 <div class="seznam">
-    <a href="/detail">
+    <a th:each="vizitka : ${seznam}" th:href="@{/{id}(id=${vizitka.id})}">
         <div class="vizitka">
-            <div class="jmeno">Dita (Přikrylová) Formánková</div>
-            <div class="firma">Czechitas z. s.</div>
+            <div class="jmeno" th:text="${vizitka.celeJmeno}">Dita (Přikrylová) Formánková</div>
+            <div class="firma" th:text="${vizitka.firma}">Czechitas z. s.</div>
             <div class="udaje">
                 <div class="adresa">
-                    <div>Václavské náměstí 837/11</div>
-                    <div><span>11000</span> <span>Praha 1</span></div>
+                    <div th:text="${vizitka.ulice}">Václavské náměstí 837/11</div>
+                    <div><span th:text="${vizitka.psc}">11000</span> <span th:text="${vizitka.obec}">Praha 1</span>
+                    </div>
                 </div>
                 <div class="kontakty">
-                    <div><i class="las la-at"></i> <span>dita@czechitas.cs</span></div>
-                    <div><i class="las la-phone-alt"></i> <span>+420 800123456</span></div>
-                    <div><i class="las la-globe"></i> <span>www.czechitas.cz</span></div>
+                    <div th:if="${vizitka.email} != null"><i class="las la-at"></i> <span th:text="${vizitka.email}">dita@czechitas.cs</span>
+                    </div>
+                    <div th:if="${vizitka.telefon} != null"><i class="las la-phone-alt"></i> <span
+                            th:text="${vizitka.telefon}">+420 800123456</span></div>
+                    <div th:if="${vizitka.web} != null"><i class="las la-globe"></i> <span th:text="${vizitka.web}">www.czechitas.cz</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -32,8 +37,8 @@
     <a href="/nova">
         <div class="vizitka vizitka--nova">
             <svg width="100" height="100">
-                <rect width="20" height="100" x="40" y="0" fill="white" />
-                <rect width="100" height="20" x="0" y="40" fill="white" />
+                <rect width="20" height="100" x="40" y="0" fill="white"/>
+                <rect width="100" height="20" x="0" y="40" fill="white"/>
             </svg>
         </div>
     </a>
