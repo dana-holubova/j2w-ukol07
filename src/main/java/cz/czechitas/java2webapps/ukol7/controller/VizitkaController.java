@@ -90,7 +90,7 @@ public class VizitkaController {
     /**
      * Zobrazení formuláře s předvyplněnými údaji
      */
-    @PostMapping(value = "/upravit")
+    @GetMapping(value = "/upravit")
     public ModelAndView zobrazFormular(Integer id) {
         return new ModelAndView("formular")
                 .addObject("formular", repository.findById(id))
@@ -100,7 +100,7 @@ public class VizitkaController {
     /**
      * Úprava vizitky
      */
-    @PostMapping(value = "/upravit", params = "akce=upravit")
+    @PostMapping(value = "/upravit")
     public Object upravit(@ModelAttribute("formular") @Valid Vizitka vizitka, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "/formular";

@@ -67,10 +67,8 @@
             <div class="error" th:if="${#fields.hasErrors('formular.web')}" th:errors="${formular.web}"></div>
         </div>
         <div class="form-controls">
-            <!-- Tlačítko Odeslat pro formulář, co vkládá nové vizitky -->
-            <button th:if="${akce} == null" type="submit">Odeslat</button>
-            <!-- Tlačítko upravit pro formulář, co upravuje vizitky -->
-            <button th:if="${akce} == 'upravit'" type="submit" name="akce" th:value="upravit">Upravit</button>
+
+            <button type="submit">Odeslat</button>
 
         </div>
     </form>

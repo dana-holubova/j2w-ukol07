@@ -12,31 +12,31 @@
 </head>
 <body>
 <div class="detail">
-        <div class="vizitka">
-            <div class="jmeno" th:text="${vizitka.celeJmeno}">Dita (Přikrylová) Formánková</div>
-            <div class="firma" th:text="${vizitka.firma}">Czechitas z. s.</div>
-            <div class="udaje">
-                <div class="adresa">
-                    <div th:text="${vizitka.ulice}">Václavské náměstí 837/11</div>
-                    <div><span th:text="${vizitka.psc}">11000</span> <span th:text="${vizitka.obec}">Praha 1</span>
-                    </div>
+    <div class="vizitka">
+        <div class="jmeno" th:text="${vizitka.celeJmeno}">Dita (Přikrylová) Formánková</div>
+        <div class="firma" th:text="${vizitka.firma}">Czechitas z. s.</div>
+        <div class="udaje">
+            <div class="adresa">
+                <div th:text="${vizitka.ulice}">Václavské náměstí 837/11</div>
+                <div><span th:text="${vizitka.psc}">11000</span> <span th:text="${vizitka.obec}">Praha 1</span>
                 </div>
-                <div class="kontakty">
-                    <div th:if="${vizitka.email} != null"><i class="las la-at"></i> <span th:text="${vizitka.email}">dita@czechitas.cs</span>
-                    </div>
-                    <div th:if="${vizitka.telefon} != null"><i class="las la-phone-alt"></i> <span
-                            th:text="${vizitka.telefon}">+420 800123456</span></div>
-                    <div th:if="${vizitka.web} != null"><i class="las la-globe"></i> <span th:text="${vizitka.web}">www.czechitas.cz</span>
-                    </div>
+            </div>
+            <div class="kontakty">
+                <div th:if="${vizitka.email} != null"><i class="las la-at"></i> <span th:text="${vizitka.email}">dita@czechitas.cs</span>
+                </div>
+                <div th:if="${vizitka.telefon} != null"><i class="las la-phone-alt"></i> <span
+                        th:text="${vizitka.telefon}">+420 800123456</span></div>
+                <div th:if="${vizitka.web} != null"><i class="las la-globe"></i> <span th:text="${vizitka.web}">www.czechitas.cz</span>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="mapa">
-            <!--        <iframe style="border:none" src="https://frame.mapy.cz/?q=Václavské náměstí 837/11, Praha" width="100%" height="100%" frameborder="0"></iframe>-->
-            <iframe style="border:none" th:src="@{https://frame.mapy.cz/(q=${vizitka.celaAdresa})}" width="100%"
-                    height="100%" frameborder="0"></iframe>
-        </div>
+    <div class="mapa">
+        <!--        <iframe style="border:none" src="https://frame.mapy.cz/?q=Václavské náměstí 837/11, Praha" width="100%" height="100%" frameborder="0"></iframe>-->
+        <iframe style="border:none" th:src="@{https://frame.mapy.cz/(q=${vizitka.celaAdresa})}" width="100%"
+                height="100%" frameborder="0"></iframe>
+    </div>
 
     <!--    Mazání vizitky-->
     <form action="/smazat" method="post">
@@ -46,7 +46,7 @@
     </form>
 
     <!--    Úprava vizitky vizitky-->
-    <form action="/upravit" method="post">
+    <form action="/upravit" method="get">
         <!--        skryté pole pro id -->
         <input type="hidden" th:field="${vizitka.id}">
         <button type="submit" th:if="${vizitka.id} != null">Upravit</button>
