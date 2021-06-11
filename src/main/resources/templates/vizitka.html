@@ -12,10 +12,7 @@
 </head>
 <body>
 <div class="detail">
-    <form action="/" method="post">
         <div class="vizitka">
-            <!--        skryté pole pro id -->
-            <input type="hidden" th:field="${vizitka.id}">
             <div class="jmeno" th:text="${vizitka.celeJmeno}">Dita (Přikrylová) Formánková</div>
             <div class="firma" th:text="${vizitka.firma}">Czechitas z. s.</div>
             <div class="udaje">
@@ -40,12 +37,21 @@
             <iframe style="border:none" th:src="@{https://frame.mapy.cz/(q=${vizitka.celaAdresa})}" width="100%"
                     height="100%" frameborder="0"></iframe>
         </div>
-        <!--    Mazání vizitky-->
-        <button type="submit" th:if="${vizitka.id} != null" name="akce" th:value="smazat">Smazat</button>
-        <!--        TODO: dokončit úpravu vizitky -->
-        <!--    Úprava vizitky-->
-        <!--        <button type="submit" th:if="${vizitka.id} != null" name="akce" th:value="upravit">Upravit</button>-->
+
+    <!--    Mazání vizitky-->
+    <form action="/smazat" method="post">
+        <!--        skryté pole pro id -->
+        <input type="hidden" th:field="${vizitka.id}">
+        <button type="submit" th:if="${vizitka.id} != null">Smazat</button>
     </form>
+
+    <!--    Úprava vizitky vizitky-->
+    <form action="/upravit" method="post">
+        <!--        skryté pole pro id -->
+        <input type="hidden" th:field="${vizitka.id}">
+        <button type="submit" th:if="${vizitka.id} != null">Upravit</button>
+    </form>
+
     <nav>
         <a href="/">◂ zpět na seznam</a>
     </nav>

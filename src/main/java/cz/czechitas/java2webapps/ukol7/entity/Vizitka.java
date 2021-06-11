@@ -29,13 +29,13 @@ public class Vizitka {
     @Length(max = 100)
     @NotBlank
     private String obec;
-    @Pattern(regexp = "\\d{5}")
+    @Pattern(regexp = "\\d{5}", message="Zadejte 5 čísel.")
     @NotBlank
     private String psc;
     @Length(max = 100)
     @Email
     private String email;
-    @Pattern(regexp = "\\+?\\d+")
+    @Pattern(regexp = "\\+?\\d+", message="Zadejte ve formátu...")
     @Length(max = 20)
     private String telefon;
     @Length(max = 100)

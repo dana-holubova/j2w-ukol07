@@ -77,18 +77,36 @@ public class VizitkaController {
     /**
      * Smazání vizitky
      */
-    @PostMapping(value = "/", params = "akce=smazat")
+    @PostMapping(value = "/smazat")
+    /**
+     * Jako parametr předávám celou entitu Vizitka. Z ní si Springu už vybere property id.
+     * V parametru se dá rovnou předat Ingeter id.
+     */
     public Object smazat(Vizitka vizitka) {
         repository.deleteById(vizitka.getId());
         return "redirect:/";
     }
 
-/**
- * Úprava vizitky
- */
-// TODO: Zkusit dokončit. Zatím nevím jak.
-//@GetMapping (value = "/", params = "akce=upravit")
-//    public String upravit() {
-//    return "redirect:/formular";
-//}
+    /**
+     * Zobrazení formuláře s předvyplněnými údaji
+     */
+    @PostMapping(value = "/upravit")
+    public ModelAndView zobrazFormular(Integer id) {
+        return new ModelAndView("formular")
+                .addObject("formular", repository.findById(id))
+                .addObject("akce", "upravit");
+    }
+
+    /**
+     * Úprava vizitky
+     */
+    @PostMapping(value = "/upravit", params = "akce=upravit")
+    public Object upravit(@ModelAttribute("formular") @Valid Vizitka vizitka, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/formular";
+        }
+        repository.save(vizitka);
+        return "redirect:/" + vizitka.getId();
+    }
+
 }

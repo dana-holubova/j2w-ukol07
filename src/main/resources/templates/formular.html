@@ -13,6 +13,8 @@
 <body>
 <div class="detail">
     <form class="vizitka" method="post" novalidate>
+        <!--        skryté pole pro id -->
+        <input type="hidden" th:field="${formular.id}">
         <div class="row">
             <label for="celeJmeno">Jméno</label>
             <input type="text" th:field="${formular.celeJmeno}" maxlength="100" required/>
@@ -65,7 +67,11 @@
             <div class="error" th:if="${#fields.hasErrors('formular.web')}" th:errors="${formular.web}"></div>
         </div>
         <div class="form-controls">
-            <button type="submit">Odeslat</button>
+            <!-- Tlačítko Odeslat pro formulář, co vkládá nové vizitky -->
+            <button th:if="${akce} == null" type="submit">Odeslat</button>
+            <!-- Tlačítko upravit pro formulář, co upravuje vizitky -->
+            <button th:if="${akce} == 'upravit'" type="submit" name="akce" th:value="upravit">Upravit</button>
+
         </div>
     </form>
 
